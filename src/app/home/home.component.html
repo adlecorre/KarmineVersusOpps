@@ -1,0 +1,5 @@
+<div class="home-container">
+  <div *ngFor="let opp of opps | keyvalue">
+    <h2><a routerLink="/opps/{{ opp.key}}">{{opp.key}}</a><br></h2>
+  </div>
+</div>
