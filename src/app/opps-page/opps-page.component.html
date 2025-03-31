@@ -1,0 +1,8 @@
+<h1>Matchs contre {{ oppsName }}</h1>
+<div *ngFor="let team of opps | keyvalue">
+<ng-container *ngIf="team.key === oppsName">
+    <ul>
+    <li *ngFor="let game of team.value">{{ game }}</li>
+    </ul>
+</ng-container>
+</div>
