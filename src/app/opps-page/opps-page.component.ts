@@ -25,7 +25,7 @@ export class OppsPageComponent implements OnInit {
     this.oppsName = params.get('oppsName') ?? 'Not an opp';
     this.getOppDetails();
 
-    this.lolMatchService.getMatches().subscribe((data) => {
+    this.lolMatchService.getAllTournamentsMatches().subscribe((data) => {
       this.extractTeams(data);
     });
   });

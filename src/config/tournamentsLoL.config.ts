@@ -1,4 +1,4 @@
-const tournamentLoLConfig = {
+export const tournamentLoLConfig = {
   LFL2: {},
   LFL: {
     'lfl_ko_2025': { id: '113662954820773942', name: 'LFL Knockout 2025' },
