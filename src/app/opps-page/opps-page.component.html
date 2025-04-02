@@ -8,15 +8,17 @@
 </div>
 
 
-<!-- Affichage des matchs-->
 <ul>
-<li *ngFor="let match of matches">
+  <li *ngFor="let match of matches">
     <div class="matchInfo">
-    Match ID: {{ match.id }} 
-
+      {{ formatDate(match.rfc460Timestamp) }}
+      <span *ngFor="let team of match.teams; let i = index">
+        {{ team.name }}{{ i < match.teams.length - 1 ? ' vs ' : '' }}
+      </span>
     </div>
-</li>
+  </li>
 </ul>
+
 
 
 

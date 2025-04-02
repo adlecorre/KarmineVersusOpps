@@ -21,15 +21,16 @@ export class OppsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  this.route.paramMap.subscribe((params) => {
-    this.oppsName = params.get('oppsName') ?? 'Not an opp';
-    this.getOppDetails();
+    this.route.paramMap.subscribe((params) => {
+      this.oppsName = params.get('oppsName') ?? 'Not an opp';
+      this.getOppDetails();
 
-    this.lolMatchService.getAllTournamentsMatches().subscribe((data) => {
-      this.extractTeams(data);
+      this.lolMatchService.getAllTournamentsMatches().subscribe((data) => {
+        console.log('data', data);
+        this.extractTeams(data);
+      });
     });
-  });
-}
+  }
 
   /**
    * Définit Opp comme l'objet de configuration sachant le nom
@@ -46,10 +47,17 @@ export class OppsPageComponent implements OnInit {
     matches.forEach((match: any) => {
       if (match.teams.length === 2) {
         const teamCodes = match.teams.map((team: any) => team.code);
-        if (this.opp.aliases.some((alias: string) => teamCodes.includes(alias))) {
+        if (
+          this.opp.aliases.some((alias: string) => teamCodes.includes(alias))
+        ) {
           this.matches.push(match);
         }
       }
     });
+  }
+
+  formatDate(isoString: string): string {
+    const date = new Date(isoString);
+    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   }
 }
