@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { oppsConfig } from '../../config/opps.config';
 import { LeagueOfLegendsService } from '../league-of-legends.service';
+import { tournamentLoLConfig } from 'src/config/tournamentsLoL.config';
 
 @Component({
   selector: 'app-opps-page',
@@ -59,5 +60,9 @@ export class OppsPageComponent implements OnInit {
   formatDate(isoString: string): string {
     const date = new Date(isoString);
     return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  }
+
+  formatTournamentName(tournamentId: string): string {
+    return tournamentLoLConfig[tournamentId]?.name || 'Unknown tournament';
   }
 }
