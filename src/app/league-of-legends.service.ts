@@ -66,7 +66,7 @@ export class LeagueOfLegendsService {
                 (gi) => gi.gameId === gameId
               )?.gameInfo;
               const rfc460Timestamp =
-                gameInfo?.frames[0]?.rfc460Timestamp || null;
+                gameInfo?.frames[0]?.rfc460Timestamp ?? null;
               return { ...match, rfc460Timestamp };
             });
           })
@@ -115,10 +115,15 @@ export class LeagueOfLegendsService {
               const filteredTeam = match.teams.find(
                 (team: any) => team.code === 'KCB' || team.code === 'KC'
               );
+              const opponentTeam = match.teams.find(
+                (team: any) => team.code !== 'KCB' && team.code !== 'KC'
+              );
 
-              if (filteredTeam) {
+              if (filteredTeam && opponentTeam) {
                 match.tournamentId = tournamentId;
-                match.result = filteredTeam.result; // Ajout du résultat
+                match.result = filteredTeam.result.outcome;
+                match.scoreKC = filteredTeam.result.gameWins;
+                match.scoreOpps = opponentTeam.result.gameWins; 
                 matches.push(match);
               }
             }

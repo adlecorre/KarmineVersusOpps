@@ -10,14 +10,15 @@
 <ul>
   <li *ngFor="let match of matches">
     <div class="matchInfo" [ngClass]="{
-      'loss': match.result?.outcome === 'loss', 
-      'win': match.result?.outcome === 'win'
+      'loss': match.result === 'loss', 
+      'win': match.result === 'win'
     }">
       {{ formatDate(match.rfc460Timestamp) }}
       {{ formatTournamentName(match.tournamentId) }}
       <span *ngFor="let team of match.teams; let i = index">
         {{ team.name }}{{ i < match.teams.length - 1 ? ' vs ' : '' }}
       </span>
+      {{ getFormattedScore(match) }}
     </div>
   </li>
 </ul>

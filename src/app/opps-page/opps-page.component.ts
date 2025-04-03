@@ -65,4 +65,14 @@ export class OppsPageComponent implements OnInit {
   formatTournamentName(tournamentId: string): string {
     return tournamentLoLConfig[tournamentId]?.name || 'Unknown tournament';
   }
+
+  getFormattedScore(match: any): string {
+    const team0 = match.teams[0].code;
+    if (team0 === 'KCB' || team0 === 'KC') {
+        return `${match.scoreKC} - ${match.scoreOpps}`;
+    } else {
+        return `${match.scoreOpps} - ${match.scoreKC}`;
+    }
+}
+
 }
