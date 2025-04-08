@@ -1,7 +1,70 @@
-.loss {
-  background-color: rgb(230, 84, 84);
+.match.loss {
+  background-color: var(--color-defeat);
 }
 
-.win {
-  background-color: rgb(50, 167, 202);
+.match.win {
+  background-color: var(--color-secondary);
+}
+
+.game-logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#title-container {
+  text-align: center;
+}
+
+.game {
+  display: inline-block;
+  text-align: center;
+  
+  margin: 50px;
+  padding: 5px;
+  background: var(--color-background);
+  border-radius: 14px;
+  transition: box-shadow 0.2s ease;
+}
+.clicked {
+  filter: grayscale(100%) brightness(70%);
+  transform: scale(0.9);  
+  transition: filter 0.5s ease, transform 0.5s ease, background 0.5s ease; /* Transition fluide */
+
+  background: radial-gradient(circle, rgba(169, 169, 169, 0.8) 20%, rgba(169, 169, 169, 0) 70%);
+  border-radius: 10px; 
+}
+
+.game:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.games-container {
+  display: flex;
+  justify-content: center; 
+}
+
+#matches-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 16px; 
+  padding: 2rem;
+}
+
+.match {
+  width: 90%;
+  max-width: 600px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.match:hover {
+  transform: scale(1.02);
 }

@@ -25,3 +25,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Droits d'auteur
+<a target="_blank" href="https://icons8.com/icon/Vg63URCXiYXv/rocket-league">Rocket League</a> icône par <a target="_blank" href="https://icons8.com">Icons8</a>

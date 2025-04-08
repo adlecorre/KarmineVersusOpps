@@ -1,24 +1,41 @@
-<h1>Matchs contre {{ oppsName }}</h1>
-<div *ngFor="let team of opps | keyvalue">
+<div id="title-container">
+  <h1>Matchs contre {{ oppsName }}</h1>
+</div>
+<div class="games-container" *ngFor="let team of opps | keyvalue">
   <ng-container *ngIf="team.key === oppsName">
-    <ul>
-      <li *ngFor="let game of team.value.games">{{ game }}</li>
-    </ul>
+    <div class="game" *ngFor="let game of team.value.games">
+      <img
+        [src]="'assets/img/games/' + formatGame(game) + '.png'"
+        [class.clicked]="isClicked(game)"
+        (click)="toggleClicked(game)"
+        alt="{{ game }} logo"
+        class="game-logo"
+        title="{{ game }}"
+        draggable="false"
+      />
+    </div>
   </ng-container>
 </div>
 
-<ul>
-  <li *ngFor="let match of matches">
-    <div class="matchInfo" [ngClass]="{
-      'loss': match.result === 'loss', 
-      'win': match.result === 'win'
-    }">
+<div id="matches-container">
+  <div
+    class="match"
+    *ngFor="let match of matches"
+    [ngClass]="{
+      win: match.result === 'win',
+      loss: match.result === 'loss'
+    }"
+    @fadeInUp
+  >
+    <div class="match-info">
       {{ formatDate(match.rfc460Timestamp) }}
       {{ formatTournamentName(match.tournamentId) }}
+      <br />
       <span *ngFor="let team of match.teams; let i = index">
-        {{ team.name }}{{ i < match.teams.length - 1 ? ' vs ' : '' }}
+        {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
       </span>
+      <br />
       {{ getFormattedScore(match) }}
     </div>
-  </li>
-</ul>
+  </div>
+</div>

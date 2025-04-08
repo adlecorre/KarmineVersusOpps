@@ -3,11 +3,20 @@ import { ActivatedRoute } from '@angular/router';
 import { oppsConfig } from '../../config/opps.config';
 import { LeagueOfLegendsService } from '../league-of-legends.service';
 import { tournamentLoLConfig } from 'src/config/tournamentsLoL.config';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-opps-page',
   templateUrl: './opps-page.component.html',
   styleUrls: ['./opps-page.component.css'],
+  animations: [
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class OppsPageComponent implements OnInit {
   oppsName: string | undefined;
@@ -59,7 +68,11 @@ export class OppsPageComponent implements OnInit {
 
   formatDate(isoString: string): string {
     const date = new Date(isoString);
-    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    return `${date.getDate().toString().padStart(2, '0')}/${(
+      date.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, '0')}/${date.getFullYear()}`;
   }
 
   formatTournamentName(tournamentId: string): string {
@@ -69,10 +82,30 @@ export class OppsPageComponent implements OnInit {
   getFormattedScore(match: any): string {
     const team0 = match.teams[0].code;
     if (team0 === 'KCB' || team0 === 'KC') {
-        return `${match.scoreKC} - ${match.scoreOpps}`;
+      return `${match.scoreKC} - ${match.scoreOpps}`;
     } else {
-        return `${match.scoreOpps} - ${match.scoreKC}`;
+      return `${match.scoreOpps} - ${match.scoreKC}`;
     }
+  }
+
+  formatGame(game: string): string {
+    return game
+      .toLowerCase() // Minuscule
+      .replace(/[^a-z0-9]/g, ''); // Supprime tout sauf lettres/chiffres
+  }
+
+  clickedOpps: Set<string> = new Set();
+
+toggleClicked(key: string): void {
+  if (this.clickedOpps.has(key)) {
+    this.clickedOpps.delete(key); // unclick
+  } else {
+    this.clickedOpps.add(key); // click
+  }
+}
+
+isClicked(key: string): boolean {
+  return this.clickedOpps.has(key);
 }
 
 }
