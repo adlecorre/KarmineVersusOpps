@@ -17,6 +17,10 @@
   text-align: center;
 }
 
+.games-container {
+  display: flex;
+  justify-content: center; 
+}
 .game {
   display: inline-block;
   text-align: center;
@@ -41,10 +45,6 @@
   cursor: pointer;
 }
 
-.games-container {
-  display: flex;
-  justify-content: center; 
-}
 
 #matches-container {
   display: flex;
@@ -65,6 +65,48 @@
   text-align: center;
 }
 
+.match-info {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+  position: relative; 
+}
+
+.game-icon-container {
+  position: absolute; 
+  left: 0; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 50px;
+  height: 50px;
+}
+
+.match-data {
+  text-align: center; 
+  width: 100%; 
+}
+
+.game-icon {
+  max-width: 60px;
+  max-height: 60px;
+}
+
 .match:hover {
   transform: scale(1.02);
+}
+
+.vod-container {
+  position: absolute; 
+  right: 0; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 50px;
+  height: 50px;
+
+}
+.vod-icon {
+  max-width: 40px;
 }

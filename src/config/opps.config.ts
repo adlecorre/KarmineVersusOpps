@@ -9,7 +9,7 @@ type OppsConfig = {
 
 export const oppsConfig: OppsConfig = {
   'GentleMates': {
-    aliases: ['GentleMates', 'M8'],
+    aliases: ['GentleMates', 'Gentle Mates', 'M8'],
     games: ['Rocket League', 'Valorant (VCT)', 'League of Legends (LFL)']
   },
   'Solary': {

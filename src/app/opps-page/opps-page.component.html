@@ -27,15 +27,63 @@
     }"
     @fadeInUp
   >
+    
     <div class="match-info">
-      {{ formatDate(match.rfc460Timestamp) }}
-      {{ formatTournamentName(match.tournamentId) }}
-      <br />
-      <span *ngFor="let team of match.teams; let i = index">
-        {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
-      </span>
-      <br />
-      {{ getFormattedScore(match) }}
+      <div class="game-icon-container">
+        <img
+          [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
+          alt="League of Legends logo"
+          class="game-icon"
+        />
+      </div>
+      <div class="match-data">
+        {{ formatDate(match.rfc460Timestamp) }}
+        <br />
+        {{ formatTournamentName(match.tournamentId) }}
+        <br />
+        <span *ngFor="let team of match.teams; let i = index">
+          {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
+        </span>
+        <br />
+        {{ getFormattedScore(match) }}
+      </div>
+      <div class="vod-container">
+        <a *ngIf="match.flags[0] === 'hasVod'" [href]="'https://lolesports.com/vod/' + match.id" target="_blank">
+          <img
+            src="assets/img/misc/youtube-icon.png"
+            alt="vod"
+            class="vod-icon"
+            title="VOD"
+            draggable="false"
+          />
+        </a>      
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="matches-container">
+  <div
+    class="match"
+    *ngFor="let match of matchesToCome"
+    @fadeInUp
+  >
+    <div class="match-info">
+      <div class="game-icon-container">
+        <img
+          [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
+          alt="League of Legends logo"
+          class="game-icon"
+        />
+      </div>
+      <div class="match-data">
+        {{ formatTournamentName(match.tournamentId) }}
+        <br />
+        <span *ngFor="let team of match.teams; let i = index">
+          {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
+        </span>
+        <br />
+      </div>
     </div>
   </div>
 </div>

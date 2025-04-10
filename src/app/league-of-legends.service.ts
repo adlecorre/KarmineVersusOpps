@@ -80,7 +80,6 @@ export class LeagueOfLegendsService {
   }
 
   extractTournamentIds(): string[] {
-    // Directly return the keys of the configuration object as they are the tournament IDs
     return Object.keys(tournamentLoLConfig);
   }
 
@@ -123,7 +122,8 @@ export class LeagueOfLegendsService {
                 match.tournamentId = tournamentId;
                 match.result = filteredTeam.result.outcome;
                 match.scoreKC = filteredTeam.result.gameWins;
-                match.scoreOpps = opponentTeam.result.gameWins; 
+                match.scoreOpps = opponentTeam.result.gameWins;
+                match.competition = tournamentLoLConfig[tournamentId].competition; 
                 matches.push(match);
               }
             }
