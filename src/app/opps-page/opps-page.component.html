@@ -27,13 +27,14 @@
     }"
     @fadeInUp
   >
-    
     <div class="match-info">
       <div class="game-icon-container">
         <img
           [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
           alt="League of Legends logo"
           class="game-icon"
+          title="{{ match.competition }}"
+          draggable="false"
         />
       </div>
       <div class="match-data">
@@ -48,26 +49,34 @@
         {{ getFormattedScore(match) }}
       </div>
       <div class="vod-container">
-        <a *ngIf="match.flags[0] === 'hasVod'" [href]="'https://lolesports.com/vod/' + match.id" target="_blank">
+        <a
+          *ngIf="match.flags[0] === 'hasVod'"
+          [href]="'https://lolesports.com/vod/' + match.id"
+          target="_blank"
+        >
           <img
-            src="assets/img/misc/youtube-icon.png"
+            src="assets/img/misc/lolesport-icon.png"
             alt="vod"
             class="vod-icon"
             title="VOD"
             draggable="false"
           />
-        </a>      
+        </a>
+
+        <a *ngIf="!match.flags[0]" href="{{ match.vodUrl }}" target="_blank">
+          <img
+            src="assets/img/misc/youtube-icon.png"
+            alt="YouTube Logo"
+            class="vod-icon"
+          />
+        </a>
       </div>
     </div>
   </div>
 </div>
 
 <div id="matches-container">
-  <div
-    class="match"
-    *ngFor="let match of matchesToCome"
-    @fadeInUp
-  >
+  <div class="match" *ngFor="let match of matchesToCome" @fadeInUp>
     <div class="match-info">
       <div class="game-icon-container">
         <img
