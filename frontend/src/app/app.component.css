@@ -1,0 +1,42 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.app-main {
+  flex: 1;
+}
+
+mat-toolbar {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    height: 150px;
+}
+
+#kc-logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.app-footer {
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  border-top: 1px solid #ccc;
+  margin-top: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-white);
+}
+
+.footer-right {
+  text-align: right;
+}

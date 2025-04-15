@@ -1,0 +1,98 @@
+<div id="title-container">
+  <h1>Matchs contre {{ oppsName }}</h1>
+</div>
+<div class="games-container" *ngFor="let team of opps | keyvalue">
+  <ng-container *ngIf="team.key === oppsName">
+    <div class="game" *ngFor="let game of team.value.games">
+      <img
+        [src]="'assets/img/games/' + formatGame(game) + '.png'"
+        [class.clicked]="isClicked(game)"
+        (click)="toggleClicked(game)"
+        alt="{{ game }} logo"
+        class="game-logo"
+        title="{{ game }}"
+        draggable="false"
+      />
+    </div>
+  </ng-container>
+</div>
+
+<div id="matches-container">
+  <div
+    class="match"
+    *ngFor="let match of matches"
+    [ngClass]="{
+      win: match.result === 'win',
+      loss: match.result === 'loss'
+    }"
+    @fadeInUp
+  >
+    <div class="match-info">
+      <div class="game-icon-container">
+        <img
+          [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
+          alt="League of Legends logo"
+          class="game-icon"
+          title="{{ match.competition }}"
+          draggable="false"
+        />
+      </div>
+      <div class="match-data">
+        {{ formatDate(match.rfc460Timestamp) }}
+        <br />
+        {{ formatTournamentName(match.tournamentId) }}
+        <br />
+        <span *ngFor="let team of match.teams; let i = index">
+          {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
+        </span>
+        <br />
+        {{ getFormattedScore(match) }}
+      </div>
+      <div class="vod-container">
+        <a
+          *ngIf="match.flags[0] === 'hasVod'"
+          [href]="'https://lolesports.com/vod/' + match.id"
+          target="_blank"
+        >
+          <img
+            src="assets/img/misc/lolesport-icon.png"
+            alt="vod"
+            class="vod-icon"
+            title="VOD"
+            draggable="false"
+          />
+        </a>
+
+        <a *ngIf="!match.flags[0]" href="{{ match.vodUrl }}" target="_blank">
+          <img
+            src="assets/img/misc/youtube-icon.png"
+            alt="YouTube Logo"
+            class="vod-icon"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="matches-container">
+  <div class="match" *ngFor="let match of matchesToCome" @fadeInUp>
+    <div class="match-info">
+      <div class="game-icon-container">
+        <img
+          [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
+          alt="League of Legends logo"
+          class="game-icon"
+        />
+      </div>
+      <div class="match-data">
+        {{ formatTournamentName(match.tournamentId) }}
+        <br />
+        <span *ngFor="let team of match.teams; let i = index">
+          {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
+        </span>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

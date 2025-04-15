@@ -1,0 +1,12 @@
+<div class="home-container">
+  <div class="center-container">
+    <a
+      class="opps"
+      *ngFor="let opp of opps | keyvalue"
+      [routerLink]="'/opps/' + opp.key"
+    >
+     <img [src]="'assets/img/' + opp.key + '.png'" alt="{{ opp.key }} logo" class="opp-logo" />
+      <h2>{{ opp.key }}</h2>
+    </a>
+  </div>
+</div>

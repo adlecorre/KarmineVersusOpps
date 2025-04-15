@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import './styles/variables.css';
+
+html, body { height: 100%;margin: 0;}
+body { margin: 0; font-family: var(--font-family-main); }
+
+a {
+  color: inherit;
+  text-decoration: none; 
+}
+
+
