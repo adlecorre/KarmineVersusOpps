@@ -18,6 +18,6 @@ export const oppsConfig: OppsConfig = {
   },
   'Vitality': {
     aliases: ['Vitality', 'VIT', 'VITB'],
-    games: ['Rocket League', 'Valorant (VCT)', 'League of Legends (LEC)', 'League of Legends (LFL)']
+    games: ['Rocket League', 'Valorant (VCT)', 'League of Legends (LEC)', 'League of Legends (LFL)', 'EMEA Masters']
   }
 };

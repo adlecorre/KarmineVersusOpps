@@ -6,8 +6,8 @@
     <div class="game" *ngFor="let game of team.value.games">
       <img
         [src]="'assets/img/games/' + formatGame(game) + '.png'"
-        [class.clicked]="isClicked(game)"
-        (click)="toggleClicked(game)"
+        [class.clicked]="isClicked(formatGameName(formatGame(game)))"
+        (click)="toggleClicked(formatGameName(formatGame(game)))"
         alt="{{ game }} logo"
         class="game-logo"
         title="{{ game }}"
@@ -18,37 +18,41 @@
 </div>
 
 <div id="matches-container">
-  <div
-    class="match"
-    *ngFor="let match of matches"
-    [ngClass]="{
-      win: match.result === 'win',
-      loss: match.result === 'loss'
-    }"
-    @fadeInUp
-  >
-    <div class="match-info">
-      <div class="game-icon-container">
-        <img
-          [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
-          alt="League of Legends logo"
-          class="game-icon"
-          title="{{ match.competition }}"
-          draggable="false"
-        />
+  <ng-container *ngFor="let match of matches">
+    <div
+      class="match {{ formatGameName(match.competition) }}"
+      [class.hidden]="isClicked(formatGameName(match.competition))"
+      [ngClass]="{
+        win: match.result === 'win',
+        loss: match.result === 'loss'
+      }"
+      @fadeInUp
+    >
+      <div class="match-info">
+        <div class="game-icon-container">
+          <img
+            [src]="'assets/img/games/icon/' + formatCompetition(match) + '.png'"
+            alt="League of Legends logo"
+            class="game-icon"
+            title="{{ match.competition }}"
+            draggable="false"
+          />
+        </div>
+        <div class="match-data">
+          <b> </b>
+          {{ match.date | date : "dd/MM/yyyy" }}
+          <br />
+          <span> {{ match.kc_team }} vs {{ match.opps }} </span>
+          <br />
+          {{ match.score_kc }} - {{ match.score_opps }}
+        </div>
       </div>
-      <div class="match-data">
-        {{ formatDate(match.rfc460Timestamp) }}
-        <br />
-        {{ formatTournamentName(match.tournamentId) }}
-        <br />
-        <span *ngFor="let team of match.teams; let i = index">
-          {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}
-        </span>
-        <br />
-        {{ getFormattedScore(match) }}
-      </div>
-      <div class="vod-container">
+    </div>
+  </ng-container>
+</div>
+
+
+        <!-- <div class="vod-container">
         <a
           *ngIf="match.flags[0] === 'hasVod'"
           [href]="'https://lolesports.com/vod/' + match.id"
@@ -70,10 +74,7 @@
             class="vod-icon"
           />
         </a>
-      </div>
-    </div>
-  </div>
-</div>
+      </div> -->
 
 <div id="matches-container">
   <div class="match" *ngFor="let match of matchesToCome" @fadeInUp>
@@ -86,7 +87,6 @@
         />
       </div>
       <div class="match-data">
-        {{ formatTournamentName(match.tournamentId) }}
         <br />
         <span *ngFor="let team of match.teams; let i = index">
           {{ team.name }}{{ i < match.teams.length - 1 ? " vs " : "" }}

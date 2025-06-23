@@ -110,3 +110,7 @@
 .vod-icon {
   max-width: 40px;
 }
+
+.hidden {
+  display: none !important;
+}

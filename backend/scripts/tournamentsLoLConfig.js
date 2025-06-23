@@ -1,4 +1,4 @@
-export const tournamentLoLConfig: Record<string, { slug_name: string; name: string; competition: string }> = {
+const tournamentLoLConfig = {
   // LFL
   '114188277808117678': { slug_name: 'lfl_spring_2025', name: 'LFL Spring 2025', competition: 'LFL' },
   '113662954820773942': { slug_name: 'lfl_ko_2025', name: 'LFL Flash In 2025', competition: 'LFL' },
@@ -29,6 +29,8 @@ export const tournamentLoLConfig: Record<string, { slug_name: string; name: stri
   '111997906550466231': { slug_name: 'lec_spring_2024', name: 'LEC Spring 2024', competition: 'LEC' },
   '111560983131400452': { slug_name: 'lec_winter_2024', name: 'LEC Winter 2024', competition: 'LEC' },
 
-  // First Stand 
-  '113464388705111224': { slug_name: 'first_stand', name: 'First Stand', competition: 'First Stand' },
+  // First Stand 113464388705111224
+  '113470740394381750': { slug_name: 'first_stand', name: 'First Stand 2025', competition: 'First Stand' },
 };
+
+module.exports = tournamentLoLConfig;

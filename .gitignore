@@ -1,46 +1,50 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# === Node Modules ===
+**/node_modules
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# === Build Output ===
+**/dist
+**/tmp
+**/out-tsc
+**/coverage
+**/.angular/cache
+**/logs
 
-# Node
-/frontend/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# === System Files ===
 .DS_Store
 Thumbs.db
 
-# Custom files
-/scripts/.env
-/logs/
+# === Environment Files ===
+**/.env
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# === Angular Specific ===
+frontend/.angular
+frontend/.angular/cache
+frontend/.angular/webpack
+
+# === Test Logs and Misc ===
+libpeerconnection.log
+testem.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Git Files ===
+.history/
+*.orig
+
+# === Lint cache ===
+**/.eslintcache
+
+# === Optional Git Keep ===
+!.gitkeep
+
+# === Custom Paths ===
+scripts/.env
+scripts/output.log
